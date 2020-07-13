@@ -1,3 +1,4 @@
 *.zip
 *.img
 keys/
+wpa_supplicant.conf

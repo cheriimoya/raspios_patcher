@@ -21,8 +21,15 @@ mkdir -p temp/home/pi/.ssh
 if [ -e keys/*.pub ]; then
     echo "Adding provided keys to the image"
     for key in keys/*.pub; do cat $key >> temp/home/pi/.ssh/authorized_keys; done
+    echo "PasswordAuthentication no" >> temp/etc/ssh/sshd_config
 else
     echo "No keys were given"
+fi
+
+if [ -e wpa_supplicant.conf ]
+then
+    echo "Patching image to enable wpa"
+    cp wpa_supplicant.conf temp/boot/wpa_supplicant.conf
 fi
 
 echo "Cleaning up"
