@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  raspios_patcher:
+    build: ./
+    volumes:
+      - ./:/workdir
+      - /dev:/dev
+    privileged: true
