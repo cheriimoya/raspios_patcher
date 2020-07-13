@@ -18,9 +18,9 @@ mount "${lodevice}p1" temp/boot
 echo "Patching image to enable ssh"
 touch temp/boot/ssh
 mkdir -p temp/home/pi/.ssh
-if [ "$(ls -A keys)" ]; then
+if [ -e keys/*.pub ]; then
     echo "Adding provided keys to the image"
-    for key in keys/*; do cat $key >> temp/home/pi/.ssh/authorized_keys; done
+    for key in keys/*.pub; do cat $key >> temp/home/pi/.ssh/authorized_keys; done
 else
     echo "No keys were given"
 fi
